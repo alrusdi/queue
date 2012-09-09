@@ -1,0 +1,138 @@
+log created at Wed Sep 05 21:12:51 +0400 2012[Wed Sep 05 23:18:18 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:18:18 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:18:18 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:18:18 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:18:18 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:18:18 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:23:26 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:23:26 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:23:26 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:23:26 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:23:53 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:23:53 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:23:53 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:23:53 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:24:22 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:24:22 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:24:22 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:24:22 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:26:59 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:26:59 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:26:59 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Wed Sep 05 23:26:59 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:27:12 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Wed Sep 05 23:27:12 2012] [error]   category=DeprecationWarning)
+[Wed Sep 05 23:35:51 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:35:51 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:35:51 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:35:51 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:39:44 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:39:44 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:39:44 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Wed Sep 05 23:39:44 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:39:44 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Wed Sep 05 23:39:44 2012] [error]   category=DeprecationWarning)
+[Wed Sep 05 23:47:13 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:47:13 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:47:13 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:47:13 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:47:13 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:47:13 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:47:13 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Wed Sep 05 23:47:13 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:47:13 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Wed Sep 05 23:47:13 2012] [error]   category=DeprecationWarning)
+[Wed Sep 05 23:51:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:51:39 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:51:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:51:39 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:51:40 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:51:40 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:51:40 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Wed Sep 05 23:51:40 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:51:40 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Wed Sep 05 23:51:40 2012] [error]   category=DeprecationWarning)
+[Wed Sep 05 23:53:28 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Wed Sep 05 23:53:28 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:53:28 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Wed Sep 05 23:53:28 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:53:29 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Wed Sep 05 23:53:29 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:53:29 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Wed Sep 05 23:53:29 2012] [error]   DeprecationWarning
+[Wed Sep 05 23:53:29 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Wed Sep 05 23:53:29 2012] [error]   category=DeprecationWarning)
+[Thu Sep 06 00:02:21 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 00:02:21 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:02:21 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 00:02:21 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:03:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 00:03:39 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:03:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 00:03:39 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:03:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Thu Sep 06 00:03:39 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:03:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Thu Sep 06 00:03:39 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:03:39 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Thu Sep 06 00:03:39 2012] [error]   category=DeprecationWarning)
+[Thu Sep 06 00:08:34 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 00:08:34 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:08:34 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 00:08:34 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:08:35 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Thu Sep 06 00:08:35 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:08:35 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Thu Sep 06 00:08:35 2012] [error]   DeprecationWarning
+[Thu Sep 06 00:08:35 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Thu Sep 06 00:08:35 2012] [error]   category=DeprecationWarning)
+[Thu Sep 06 09:07:47 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 09:07:47 2012] [error]   DeprecationWarning
+[Thu Sep 06 09:07:47 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 09:07:47 2012] [error]   DeprecationWarning
+[Thu Sep 06 09:07:48 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Thu Sep 06 09:07:48 2012] [error]   DeprecationWarning
+[Thu Sep 06 09:07:54 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Thu Sep 06 09:07:54 2012] [error]   DeprecationWarning
+[Thu Sep 06 09:08:02 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Thu Sep 06 09:08:02 2012] [error]   category=DeprecationWarning)
+[Thu Sep 06 17:32:41 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 17:32:41 2012] [error]   DeprecationWarning
+[Thu Sep 06 17:32:41 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 17:32:41 2012] [error]   DeprecationWarning
+[Thu Sep 06 17:32:43 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Thu Sep 06 17:32:43 2012] [error]   DeprecationWarning
+[Thu Sep 06 17:32:43 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Thu Sep 06 17:32:43 2012] [error]   DeprecationWarning
+[Thu Sep 06 17:32:43 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Thu Sep 06 17:32:43 2012] [error]   category=DeprecationWarning)
+[Thu Sep 06 19:30:02 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Thu Sep 06 19:30:02 2012] [error]   DeprecationWarning
+[Thu Sep 06 19:30:02 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Thu Sep 06 19:30:02 2012] [error]   DeprecationWarning
+[Thu Sep 06 19:30:03 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Thu Sep 06 19:30:03 2012] [error]   DeprecationWarning
+[Thu Sep 06 19:30:03 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Thu Sep 06 19:30:03 2012] [error]   DeprecationWarning
+[Thu Sep 06 19:30:03 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Thu Sep 06 19:30:03 2012] [error]   category=DeprecationWarning)
+[Fri Sep 07 10:38:04 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Fri Sep 07 10:38:04 2012] [error]   DeprecationWarning
+[Fri Sep 07 10:38:04 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Fri Sep 07 10:38:04 2012] [error]   DeprecationWarning
+[Fri Sep 07 10:38:05 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Fri Sep 07 10:38:05 2012] [error]   DeprecationWarning
+[Fri Sep 07 10:38:05 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Fri Sep 07 10:38:05 2012] [error]   DeprecationWarning
+[Fri Sep 07 10:38:06 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Fri Sep 07 10:38:06 2012] [error]   category=DeprecationWarning)
+[Sun Sep 09 11:39:48 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:19: DeprecationWarning: settings.DATABASE_* is deprecated; use settings.DATABASES instead.
+[Sun Sep 09 11:39:48 2012] [error]   DeprecationWarning
+[Sun Sep 09 11:39:48 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/db/__init__.py:60: DeprecationWarning: Short names for ENGINE in database configurations are deprecated. Prepend default.ENGINE with 'django.db.backends.'
+[Sun Sep 09 11:39:48 2012] [error]   DeprecationWarning
+[Sun Sep 09 11:39:49 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/filesystem.py:58: DeprecationWarning: 'django.template.loaders.filesystem.load_template_source' is deprecated; use 'django.template.loaders.filesystem.Loader' instead.
+[Sun Sep 09 11:39:49 2012] [error]   DeprecationWarning
+[Sun Sep 09 11:39:54 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/template/loaders/app_directories.py:71: DeprecationWarning: 'django.template.loaders.app_directories.load_template_source' is deprecated; use 'django.template.loaders.app_directories.Loader' instead.
+[Sun Sep 09 11:39:54 2012] [error]   DeprecationWarning
+[Sun Sep 09 11:40:56 2012] [error] /opt/django-1.3/lib/python2.6/site-packages/django/contrib/auth/models.py:393: DeprecationWarning: The user messaging API is deprecated. Please update your code to use the new messages framework.
+[Sun Sep 09 11:40:56 2012] [error]   category=DeprecationWarning)
