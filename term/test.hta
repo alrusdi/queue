@@ -1,0 +1,44 @@
+<hta:application
+   showintaskbar = "no"
+   caption = "yes"
+   border = "thin"
+   contextmenu = "no"
+   innerborder = "no"
+   scroll = "no"
+   singleinstance = "yes"
+   resizable = "yes"
+   >
+<!-- windowState = "maximize" -->
+<html>
+<head>
+<title>prterm</title>
+<script language="VBScript">
+
+    Sub RunProgram
+        Set objShell = CreateObject("Wscript.Shell")
+        objShell.Run "write.exe /p tst.docx"
+        doact()
+    End Sub
+
+</script>
+<script Language="JScript">
+        var wsh = new ActiveXObject('WScript.Shell');
+        function doact()
+        {
+            var h = setInterval(function(){wsh.appActivate(document.title);}, 10);
+            setTimeout(function(){clearInterval(h);}, 1000);
+        }
+        window.ext_test = function()
+        {
+
+            alert(1);
+        }
+</script>
+</head>
+<body>
+<h1>Hello printing!</h1>
+<input type="button" onclick='RunProgram()' value="print" />
+<input type="button" onclick='ext_test()' value="chk" />
+<iframe trusted="yes" application="yes" src="http://192.168.0.20:8000/" width="100%" height="50%"></iframe>
+</body>
+</html>

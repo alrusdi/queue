@@ -89,6 +89,7 @@ INSTALLED_APPS = (
     'south',
     'mptt',
     'queue',
+    'qcalendar'
 )
 
 from local_settings import *
