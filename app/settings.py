@@ -88,3 +88,6 @@ INSTALLED_APPS = (
     'mptt',
     'queue',
 )
+
+from local_settings import *
+
