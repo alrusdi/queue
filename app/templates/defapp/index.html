@@ -1,63 +1,78 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>очереди-нет.рф</title>
-	<link type="text/css" href="/static/css/style.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>очереди-нет.рф</title>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="/static/js/jquery.keyboard.js"></script>
+    <script src="/static/js/layouts/russian.js"></script>
+    <link type="text/css" href="/static/css/style.css" rel="stylesheet" />
+    <link type="text/css" href="/static/css/keyboard.css" rel="stylesheet" />
+    <script>
+        $(function(){
+            $('.ui-keyboard-input').keyboard({layout:'russian-qwerty'});
+        });
+    </script>
 </head>
 
 <body>
-	<div class="base">
-		<div style="border:5px solid #666; padding:15px;text-align:center;">
-			<div style="display:inline-block;vertical-align: top;">
-				<div class="button white" style="display:table;">
-					<div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-						<img src="http://www.w3schools.com/images/compatible_safari.gif" />
-					</div>
-					<div style="display:table-cell;vertical-align: middle;text-align:left;">
-						Div <br >Много<br> Строчный
-					</div>
-				</div> 
-			</div>
-			<div style="display:inline-block;vertical-align: top;">
-				<div class="button white" style="display:table;">
-					<div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-						<img src="http://www.w3schools.com/images/compatible_safari.gif" />
-					</div>
-					<div style="display:table-cell;vertical-align: middle;text-align:left;">
-						Div <br >Много<br> Строчный
-					</div>
-				</div> 
-			</div>
-		</div>
-		<br ><br clear="all" />
-		<div style="border:5px solid #666; padding:15px;text-align:center;">
-			<div style="display:inline-block;vertical-align: top;">
-				<div class="button orange" style="display:table;">
-					<div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-						<img src="http://www.w3schools.com/images/compatible_safari.gif" />
-					</div>
-					<div style="display:table-cell;vertical-align: middle;text-align:left;">
-						Div <br >Много<br> Строчный
-					</div>
-				</div> 
-			</div>
-			<div style="display:inline-block;vertical-align: top;">
-				<div class="button orange" style="display:table;">
-					<div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-						<img src="http://www.w3schools.com/images/compatible_safari.gif" />
-					</div>
-					<div style="display:table-cell;vertical-align: middle;text-align:left;">
-						Длиннющий однострок во все поля
-					</div>
-				</div> 
-			</div>
-		</div>
-		<br ><br clear="all" />
-		<div style="border:5px solid #666; padding:15px;text-align:center;">
-			<input type="button" onclick="alert(window.parent.ext_test())" value="Test hta call" />
-		</div>
-	</div>
+    <div class="base">
+        <div style="border:5px solid #666; padding:15px;text-align:center;">
+            <div style="display:inline-block;vertical-align: top;">
+                <div class="button white" style="display:table;">
+                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+                    </div>
+                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                        Div <br >Много<br> Строчный
+                    </div>
+                </div>
+            </div>
+            <div style="display:inline-block;vertical-align: top;">
+                <div class="button white" style="display:table;">
+                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+                    </div>
+                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                        Div <br >Много<br> Строчный
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br ><br clear="all" />
+        <div style="border:5px solid #666; padding:15px;text-align:center;">
+            <div style="display:inline-block;vertical-align: top;">
+                <div class="button orange" style="display:table;">
+                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+                    </div>
+                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                        Div <br >Много<br> Строчный
+                    </div>
+                </div>
+            </div>
+            <div style="display:inline-block;vertical-align: top;">
+                <div class="button orange" style="display:table;">
+                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+                    </div>
+                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                        Длиннющий однострок во все поля
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br ><br clear="all" />
+        <div style="border:5px solid #666; padding:15px;text-align:center;">
+            Экранная клавиатура:<input type="text" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+        </div>
+        <br ><br clear="all" />
+        <div style="border:5px solid #666; padding:15px;text-align:center;">
+            <input type="button" onclick="alert(window.parent.ext_test())" value="Test hta call" />
+        </div>
+    </div>
 </body>
 </html>
 
