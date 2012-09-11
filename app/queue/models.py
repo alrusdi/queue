@@ -57,6 +57,11 @@ class MenuItem(MPTTModel):
         verbose_name = u'Родительский пункт меню',
         null=True, blank=True,
         related_name='children')
+    icon = models.ImageField(
+        upload_to = 'btn_img',
+        verbose_name = u'Иконка кнопки',
+        null=True, blank=True
+    )
 
     def __unicode__(self):
         return self.title
