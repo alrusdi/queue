@@ -12,7 +12,7 @@
     <link type="text/css" href="/static/css/keyboard.css" rel="stylesheet" />
     <script>
         $(function(){
-            $('.ui-keyboard-input').keyboard({layout:'russian-qwerty'});
+            //$('.ui-keyboard-input').keyboard({layout:'russian-qwerty'});
         });
     </script>
 </head>
@@ -20,53 +20,74 @@
 <body>
     <div class="base">
         <div style="border:5px solid #666; padding:15px;text-align:center;">
+            {% for item in company.get_ancestors %}
+                <a href="/company/{{ item.id }}">{{ item.title }}</a> >
+            {% endfor %}
+            {{ company.title }}
+            <hr />
+            {% for item in company.get_descendants %}
             <div style="display:inline-block;vertical-align: top;">
+                <a href="/company/{{ item.id }}" style="text-decoration:none">
                 <div class="button white" style="display:table;">
+                    {% if item.logo %}
                     <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+                        <img src="/media/{{ item.logo }}" />
                     </div>
+                    {% endif %}
                     <div style="display:table-cell;vertical-align: middle;text-align:left;">
-                        Div <br >Много<br> Строчный
+                        {{ item.title }}
                     </div>
                 </div>
+                </a>
             </div>
-            <div style="display:inline-block;vertical-align: top;">
-                <div class="button white" style="display:table;">
-                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
-                    </div>
-                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
-                        Div <br >Много<br> Строчный
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
-            <div style="display:inline-block;vertical-align: top;">
-                <div class="button orange" style="display:table;">
-                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
+            {% for service in services.0.get_ancestors %}
+                <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
+                    <div class="button green" style="display:table;">
+                        {% if service.icon %}
+                        <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                            <img src="/media/{{ service.icon }}" />
+                        </div>
+                        {% endif %}
+                        <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                            {{ service.title }}
+                        </div>
                     </div>
+                </a>
+                {% if not forloop.last %}>{% endif %}
+            {% endfor %}
+            {% for service in services %}
+            <div style="display:inline-block;vertical-align: top;">
+                <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
+                <div class="button orange" style="display:table;">
+                    {% if service.icon %}
+                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                        <img src="/media/{{ service.icon }}" />
+                    </div>
+                    {% endif %}
                     <div style="display:table-cell;vertical-align: middle;text-align:left;">
-                        Div <br >Много<br> Строчный
+                        {{ service.title }}
                     </div>
                 </div>
+                </a>
             </div>
-            <div style="display:inline-block;vertical-align: top;">
-                <div class="button orange" style="display:table;">
-                    <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-                        <img src="http://www.w3schools.com/images/compatible_safari.gif" />
-                    </div>
-                    <div style="display:table-cell;vertical-align: middle;text-align:left;">
-                        Длиннющий однострок во все поля
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
-            Экранная клавиатура:<input type="text" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+            {% for param in params %}
+            <fieldset>
+            <legend>{{ param.field_title }}</legend>
+            <input type="text" style="width:80%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+            <br />
+            <p style="fon-size:small; color:#444;">
+            {{ param.field_description }}
+            </p>
+            </fieldset>
+            {% endfor %}
         </div>
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
