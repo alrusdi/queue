@@ -2,3 +2,5 @@ media/*
 *.pyc
 app/local_settings.py
 logs/*
+.idea/
+.idea/*

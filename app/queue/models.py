@@ -2,6 +2,7 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.conf import settings
+from django.contrib.auth.models import User
 
 class Company(MPTTModel):
     title = models.CharField(
@@ -89,7 +90,8 @@ class MenuItemAttribute(models.Model):
     field_type =  models.CharField(
         verbose_name = u'Тип',
         choices = MENU_ITEM_DATA_TYPE_CHOICES,
-        max_length=20
+        max_length=20,
+        default = 'string'
     )
     field_description =  models.TextField(
         verbose_name = u'Описание',
@@ -103,3 +105,65 @@ class MenuItemAttribute(models.Model):
         verbose_name = u'Запрашиваемый атрибут'
         verbose_name_plural = u'Запрашиваемые атрибуты'
 
+
+class Operator(models.Model):
+    user = models.ForeignKey(
+        User,
+        verbose_name=u'Аккаунт',
+    )
+    company = models.ForeignKey(
+        Company,
+        verbose_name=u'Фирма',
+    )
+    def __unicode__(self):
+        return u'%s (%s)' % (self.user, self.company.title)
+
+    class Meta:
+        verbose_name = u'Оператор'
+        verbose_name_plural = u'Операторы'
+
+class Visitor(models.Model):
+    user = models.ForeignKey(
+        User,
+        verbose_name=u'Аккаунт',
+    )
+    phone =  models.CharField(
+        verbose_name = u'Номер телефона',
+        max_length=255
+    )
+
+    def __unicode__(self):
+        return u'%s %s' % (self.user.username, self.phone)
+
+    class Meta:
+        verbose_name = u'Посетитель'
+        verbose_name_plural = u'Посетители'
+
+class VisitingPoint(models.Model):
+    service = models.ForeignKey(
+        MenuItem
+    )
+    operator = models.ForeignKey(
+        Operator
+    )
+    date_from = models.DateTimeField(u'Начало периода работы')
+    date_to = models.DateTimeField(u'Завершение периода работы')
+
+    def __unicode__(self):
+        return u'%s %s %s' % (self.service, self.operator, )
+
+    class Meta:
+        verbose_name = u'График работы'
+        verbose_name_plural = u'Графики работы'
+
+class VisitAttributes(models.Model):
+    pass
+
+class VisitRequest(models.Model):
+    visitor = models.ForeignKey(
+        Visitor,
+        verbose_name=u'Посетитель',
+    )
+    visiting_point = models.ForeignKey(
+        VisitingPoint
+    )
