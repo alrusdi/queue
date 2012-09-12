@@ -141,29 +141,60 @@ class Visitor(models.Model):
 
 class VisitingPoint(models.Model):
     service = models.ForeignKey(
-        MenuItem
+        MenuItem,
+        verbose_name = u'Пункт меню'
     )
     operator = models.ForeignKey(
-        Operator
+        Operator,
+        verbose_name = u'Оператор'
     )
     date_from = models.DateTimeField(u'Начало периода работы')
     date_to = models.DateTimeField(u'Завершение периода работы')
 
     def __unicode__(self):
-        return u'%s %s %s' % (self.service, self.operator, )
+        return u'%s %s' % (self.service, self.operator)
 
     class Meta:
         verbose_name = u'График работы'
         verbose_name_plural = u'Графики работы'
 
-class VisitAttributes(models.Model):
-    pass
-
 class VisitRequest(models.Model):
+    company = models.ForeignKey(
+        Company,
+        verbose_name = u'Фирма'
+    )
     visitor = models.ForeignKey(
         Visitor,
         verbose_name=u'Посетитель',
     )
     visiting_point = models.ForeignKey(
-        VisitingPoint
+        VisitingPoint,
+        verbose_name = u'Дата/Время'
     )
+
+    def __unicode__(self):
+        return u'%s %s' % (self.visitor, self.visiting_point)
+
+    class Meta:
+        verbose_name = u'Посещение'
+        verbose_name_plural = u'Посещения'
+
+class VisitAttributes(models.Model):
+    visit_request = models.ForeignKey(
+        VisitRequest,
+        verbose_name = u'Заявка'
+    )
+    attr = models.ForeignKey(
+        MenuItemAttribute,
+        verbose_name = u'Аттрибут'
+    )
+    val = models.TextField(
+        verbose_name = u'Значение'
+    )
+
+    def __unicode__(self):
+        return u'%s %s' % (self.visitor, self.visiting_point)
+
+    class Meta:
+        verbose_name = u'Значение запрашиваемого аттрибута'
+        verbose_name_plural = u'Значения запрашиваемых аттрибутов'
