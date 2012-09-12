@@ -4,8 +4,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^info/$', 'defapp.views.index'),
-    (r'^$', 'defapp.views.logo'),
+    (r'^$', 'queue.views.index'),
     url(r'^admin/', include(admin.site.urls)),
 )
 
