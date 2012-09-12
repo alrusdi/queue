@@ -4,6 +4,9 @@ from django.template import Context, loader
 from queue.models import Company, MenuItem
 from django.shortcuts import redirect
 
+def index(request):
+    return redirect('/company/')
+
 def _get_company(company_id = False):
     if company_id:
         company = Company.objects.get(pk= company_id)

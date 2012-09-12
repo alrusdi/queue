@@ -4,6 +4,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', 'queue.views.index'),
     (r'^company/(?P<company_id>.*)$', 'queue.views.companies'),
     (r'^services/(?P<company_id>[0-9]+)/(?P<service_id>.*)$', 'queue.views.services'),
     (r'^apply/(?P<company_id>[0-9]+)/(?P<service_id>[0-9]+)$', 'queue.views.apply'),
