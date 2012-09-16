@@ -36,5 +36,5 @@ class VisitRequestAdmin(admin.ModelAdmin):
 admin.site.register(VisitRequest, VisitRequestAdmin)
 
 class VisitingPointAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('operator', 'service', 'date_from', 'date_to')
 admin.site.register(VisitingPoint, VisitingPointAdmin)

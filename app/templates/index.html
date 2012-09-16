@@ -24,6 +24,7 @@
                 <a href="/company/{{ item.id }}">{{ item.title }}</a> >
             {% endfor %}
             {{ company.title }}
+            {% if page == 'company' %}
             <hr />
             {% for item in company.get_descendants %}
             <div style="display:inline-block;vertical-align: top;">
@@ -41,24 +42,26 @@
                 </a>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
+        {% if page == 'service' %}
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
             {% for service in services.0.get_ancestors %}
+                {% if forloop.first %}
+                <a href="/services/{{ company.id }}" style="text-decoration:none">
+                Все услуги
+                </a> >
+                {% endif %}
+                {% if forloop.last %}
+                    {{ service.title }}
+                {% else %}
                 <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
-                    <div class="button green" style="display:table;">
-                        {% if service.icon %}
-                        <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
-                            <img src="/media/{{ service.icon }}" />
-                        </div>
-                        {% endif %}
-                        <div style="display:table-cell;vertical-align: middle;text-align:left;">
-                            {{ service.title }}
-                        </div>
-                    </div>
-                </a>
-                {% if not forloop.last %}>{% endif %}
+                    {{ service.title }}
+                </a> >
+                {% endif %}
             {% endfor %}
+            <br /><br clear="all" />
             {% for service in services %}
             <div style="display:inline-block;vertical-align: top;">
                 <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
@@ -76,23 +79,88 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
+        {% if service %}
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
-            {% for param in params %}
+            {% for pservice in service.get_ancestors %}
+                {% if forloop.first %}
+                <a href="/services/{{ company.id }}" style="text-decoration:none">
+                Все услуги
+                </a> >
+                {% endif %}
+                <a href="/services/{{ company.id }}/{{ pservice.id }}" style="text-decoration:none">
+                    {{ pservice.title }}
+                </a> >
+            {% endfor %}
+            {{ service.title }}
             <fieldset>
-            <legend>{{ param.field_title }}</legend>
-            <input type="text" style="width:80%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                <legend>Время записи</legend>
+                {% if calendar.prev_month_available %}
+                <a href="/apply/{{ company.id }}/{{ service.id }}/?y={{ calendar.prev_year }}&m={{ calendar.prev_month }}">
+                << предыдущий месяц
+                </a>
+                {% endif %}
+                <span>{{calendar.month_str}} {{ calendar.year }}</span>
+                {% if calendar.next_month_available %}
+                <a href="/apply/{{ company.id }}/{{ service.id }}/?y={{ calendar.next_year }}&m={{ calendar.next_month }}">
+                следующий месяц >>
+                </a>
+                {% endif %}
+
+                <div class="vis_calendar">
+                {% if vispoints %}
+                {% for week in calendar.values %}
+                    <div class="week_line" style="margin-bottom:8px;">
+                    {% for day in week %}
+                    <div class="button {% if day.data %}{% if day.enabled %}green{% else %}red{% endif %}{% else %}white{% endif %}" style="display:inline-block; width:35px;height:45px;vertical-align: middle;">
+                        <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                            {% if not day.day %}
+                            {{ day|default:" " }}
+                            {% else %}
+                            {{ day.day }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+                {% else %}
+                Нет свободных для записи дат
+                {% endif %}
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Основные данные</legend>
+                <div style="width:200px; float:left;">Фамилия:</div> <input type="text" name="last_name" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+                <div style="width:200px; float:left;">Имя:</div> <input name="first_name" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+                <div style="width:200px; float:left;">Телефон для связи:</div> <input name="phone" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+            </fieldset>
+            {% if params %}
+            <fieldset>
+            <legend>Дополнительные параметры</legend>
+            {% for param in params %}
+            <div style="width:200px; float:left;">{{ param.field_title }}</div>
+            <div style="float:right;width:75%;text-align:left;">
+            <input name="cf_{{ param.pk }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
             <br />
-            <p style="fon-size:small; color:#444;">
+            <p style="font-size:xx-small; color:#777;">
             {{ param.field_description }}
             </p>
-            </fieldset>
+            </div>
+            <br clear="all" />
             {% endfor %}
+            </fieldset>
+            {% endif %}
+
         </div>
+        {% endif %}
+        {% comment %}
         <br ><br clear="all" />
         <div style="border:5px solid #666; padding:15px;text-align:center;">
             <input type="button" onclick="alert(window.parent.ext_test())" value="Test hta call" />
         </div>
+        {% endcomment %}
     </div>
 </body>
 </html>
