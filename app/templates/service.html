@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="border:5px solid #666; padding:15px;text-align:center;">
+        {% for service in services.0.get_ancestors %}
+            {% if forloop.first %}
+                <a href="/services/{{ company.id }}" style="text-decoration:none">
+                    Все услуги
+                </a> >
+            {% endif %}
+            {% if forloop.last %}
+                {{ service.title }}
+            {% else %}
+                <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
+                    {{ service.title }}
+                </a> >
+            {% endif %}
+        {% endfor %}
+        <br /><br clear="all" />
+        {% for service in services %}
+            <a href="/services/{{ company.id }}/{{ service.id }}" style="text-decoration:none">
+            <div style="display:inline-block;vertical-align: top;">
+                    <div class="button orange" style="display:table;">
+                        {% if service.icon %}
+                            <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                                <img src="/media/{{ service.icon }}" />
+                            </div>
+                        {% endif %}
+                        <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                            {{ service.title }}
+                        </div>
+                    </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

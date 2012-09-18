@@ -96,6 +96,7 @@
             {{ service.title }}
             <fieldset>
                 <legend>Время записи</legend>
+                <div class="breadcrumbs">
                 {% if calendar.prev_month_available %}
                 <a href="/apply/{{ company.id }}/{{ service.id }}/?y={{ calendar.prev_year }}&m={{ calendar.prev_month }}">
                 << предыдущий месяц
@@ -107,6 +108,7 @@
                 следующий месяц >>
                 </a>
                 {% endif %}
+                </div>
 
                 <div class="vis_calendar">
                 {% if vispoints %}

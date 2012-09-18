@@ -19,7 +19,7 @@ def _get_company(company_id = False):
     return company
 
 def companies(request, company_id = False):
-    t = loader.get_template('index.html')
+    t = loader.get_template('company.html')
     current_company = _get_company(company_id)
     if current_company.get_descendant_count() < 1:
         return redirect('/services/'+company_id)
@@ -30,7 +30,7 @@ def companies(request, company_id = False):
     return HttpResponse(t.render(c))
 
 def services(request, company_id, service_id=False):
-    t = loader.get_template('index.html')
+    t = loader.get_template('service.html')
     current_company = _get_company(company_id)
     if service_id:
         services = MenuItem.objects.get(pk=service_id).get_descendants().filter(parent=service_id)
@@ -38,7 +38,7 @@ def services(request, company_id, service_id=False):
         services = current_company.menuitem_set.all()
 
     if service_id and len(services) < 1:
-        return redirect('/apply/'+company_id+'/'+service_id)
+        return redirect('/choosedate/'+company_id+'/'+service_id)
 
     c = Context({
                 'company': current_company,
@@ -47,8 +47,8 @@ def services(request, company_id, service_id=False):
                 })
     return HttpResponse(t.render(c))
 
-def apply(request, company_id, service_id):
-    t = loader.get_template('index.html')
+def choosedate(request, company_id, service_id):
+    t = loader.get_template('choosedate.html')
     company = Company.objects.get(pk = company_id)
     service = MenuItem.objects.get(pk = service_id)
     url_date = datetime(int(request.GET.get('y')), int(request.GET.get('m',1)), 1) if request.GET.get('y', False) else False
@@ -84,7 +84,6 @@ def apply(request, company_id, service_id):
             'month_str': pytils.dt.ru_strftime(u'%B', date_from),
             'values': []
         }
-
         vals = calendar.monthcalendar(cal['year'],cal['month'])
         k1=-1
         for w in vals:
@@ -101,7 +100,8 @@ def apply(request, company_id, service_id):
                 vals[k1][k2] = {
                     'enabled':not(vp.id in locked),
                     'data':vp,
-                    'day':d
+                    'day':d,
+                    'date_str': key
                     }
         cal['values'] = vals
 
@@ -126,10 +126,54 @@ def apply(request, company_id, service_id):
     c = Context({
                 'company': company,
                 'service': service,
-                'params': service.menuitemattribute_set.all(),
                 'vispoints': vispoints,
                 'locked_vispoints': locked,
                 'calendar': cal,
                 'page': 'apply'
                 })
+    return HttpResponse(t.render(c))
+
+def choosetime(request, company_id, service_id, day):
+    t = loader.get_template('choosetime.html')
+    company = Company.objects.get(pk = company_id)
+    service = MenuItem.objects.get(pk = service_id)
+    day = [int(i) for i in day.split('-')]
+    date_from = datetime(*day)
+    date_to = datetime(*day, hour=23, minute=59)
+    locked = list(VisitRequest.objects.filter(
+        visiting_point__service=service,
+        visiting_point__date_from__gte=date_from,
+        visiting_point__date_to__lte=date_to,
+        ).values('visiting_point__pk'))
+    locked = [i['visiting_point__pk'] for i in locked]
+
+    raw_vispoints = list(VisitingPoint.objects.filter(service=service, date_from__gte=date_from, date_to__lte=date_to).order_by('date_from'))
+
+    vispoints = []
+    for vp in raw_vispoints:
+        vispoints.append({
+            'data':vp,
+            'enabled': not(vp.pk in locked)
+        })
+    c = Context({
+        'company': company,
+        'service': service,
+        'vispoints': vispoints
+    })
+    return HttpResponse(t.render(c))
+
+def apply(request, vis_point):
+    t = loader.get_template('apply.html')
+    vp = VisitingPoint.objects.get(pk=vis_point)
+    post = {}
+    if request.method == 'POST':
+        post = request.POST
+        print post
+    c = Context({
+        'company': vp.service.company,
+        'service': vp.service,
+        'params': vp.service.menuitemattribute_set.all(),
+        'vispoint': vp,
+        'post': post
+    })
     return HttpResponse(t.render(c))

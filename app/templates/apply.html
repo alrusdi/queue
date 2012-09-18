@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load customtags %}
+{% block content %}
+    <div style="border:5px solid #666; padding:15px;text-align:center;">
+        <h1>Оформление заявки</h1>
+        <form id="apply_form" method="post" action="/apply/{{ vispoint.pk }}">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Основные данные</legend>
+            <div style="width:200px; float:left;">Фамилия:</div> <input type="text" name="last_name" value="{{ post.last_name }}" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+            <div style="width:200px; float:left;">Имя:</div> <input name="first_name" value="{{ post.first_name }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+            <div style="width:200px; float:left;">Телефон для связи:</div> <input name="phone" value="{{ post.phone }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+        </fieldset>
+        {% if params %}
+        <fieldset>
+            <legend>Дополнительные параметры</legend>
+            {% for param in params %}
+                <div style="width:200px; float:left;">{{ param.field_title }}</div>
+                <div style="float:right;width:75%;text-align:left;">
+                    <input name="{{ param.field_name }}" type="text"  value="{{ post|dictval:param.field_name }}" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                    <br />
+                    <p style="font-size:xx-small; color:#777;">
+                        {{ param.field_description }}
+                    </p>
+                </div>
+                <br clear="all" />
+            {% endfor %}
+        </fieldset>
+        {% endif %}
+        <div onclick="$('#apply_form').submit()" class="button green" style="display:inline-block; width:135px;height:45px;vertical-align: middle;">
+            <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                Оформить
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock %}

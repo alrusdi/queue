@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="border:5px solid #666; padding:15px;text-align:center;">
+    {% for item in company.get_ancestors %}
+        <a href="/company/{{ item.id }}">{{ item.title }}</a> >
+    {% endfor %}
+    {{ company.title }}
+    {% if page == 'company' %}
+    <hr />
+    {% for item in company.get_descendants %}
+    <a href="/company/{{ item.id }}" style="text-decoration:none">
+        <div style="display:inline-block;vertical-align: top;">
+            <div class="button white" style="display:table;">
+                {% if item.logo %}
+                <div style="display:table-cell;vertical-align: middle;padding-right:15px;">
+                    <img src="/media/{{ item.logo }}" />
+                </div>
+                {% endif %}
+                <div style="display:table-cell;vertical-align: middle;text-align:left;">
+                    {{ item.title }}
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

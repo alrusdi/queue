@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="border:5px solid #666; padding:15px;text-align:center;">
+{% for vp in vispoints %}
+    {% if vp.enabled %}
+        <a href="/apply/{{ vp.data.pk }}" style="text-decoration:none;">
+    {% endif %}
+    <div class="button {% if vp.enabled %}green{% else %}red{% endif %}" style="display:inline-block; width:145px;height:45px;vertical-align: middle;">
+        <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+            {{ vp.data.date_from|date:'H:m' }}-{{ vp.data.date_to|date:'H:m' }}
+        </div>
+    </div>
+    {% if vp.enabled %}
+        </a>
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock %}

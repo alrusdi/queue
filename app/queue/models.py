@@ -98,6 +98,10 @@ class MenuItemAttribute(models.Model):
         null=True, blank=True
     )
 
+    @property
+    def field_name(self):
+        return u'sf_%s' % self.pk
+
     def __unicode__(self):
         return u'%s (%s)' % (self.field_title, self.get_field_type_display())
 
@@ -152,7 +156,13 @@ class VisitingPoint(models.Model):
     date_to = models.DateTimeField(u'Завершение периода работы')
 
     def __unicode__(self):
-        return u'%s %s' % (self.service, self.operator)
+        return u'%s %s %s %s-%s' % (
+            self.service,
+            self.operator,
+            self.date_from.strftime('%Y-%m-%d'),
+            self.date_from.strftime('%H:%M'),
+            self.date_to.strftime('%H:%M')
+            )
 
     class Meta:
         verbose_name = u'График работы'

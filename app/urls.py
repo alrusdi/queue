@@ -7,8 +7,10 @@ urlpatterns = patterns('',
     (r'^$', 'queue.views.index'),
     (r'^company/(?P<company_id>.*)$', 'queue.views.companies'),
     (r'^services/(?P<company_id>[0-9]+)/(?P<service_id>.*)$', 'queue.views.services'),
-    (r'^apply/(?P<company_id>[0-9]+)/(?P<service_id>[0-9]+).*$', 'queue.views.apply'),
-    url(r'^admin/', include(admin.site.urls)),
+    (r'^choosedate/(?P<company_id>[0-9]+)/(?P<service_id>[0-9]+).*$', 'queue.views.choosedate'),
+    (r'^choosetime/(?P<company_id>[0-9]+)/(?P<service_id>[0-9]+)/(?P<day>[0-9]{4}\-[0-9]{2}\-[0-9]{2}).*$', 'queue.views.choosetime'),
+    (r'^apply/(?P<vis_point>[0-9]+).*$', 'queue.views.apply'),
+    (r'^admin/', include(admin.site.urls)),
 )
 
 if settings.DEBUG:

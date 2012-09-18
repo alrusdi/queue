@@ -1,0 +1,53 @@
+# -*- coding: utf8 -*-
+
+from django import template
+from datetime import date
+
+from unicom.common.number_format import special_number_format as float_format
+from unicom.common.ents import convert
+
+
+
+register = template.Library()
+
+@register.simple_tag
+def range_year(start):
+    '''
+    Return string from start year to now year with '-' delimiter
+    '''
+    end = date.today().year
+    end = u'&thinsp;&mdash;&thinsp;' + unicode(end) if int(start) < end else u''
+    return u'%s%s' % (start, end)
+
+
+
+@register.simple_tag
+def html_entities_decode(text):
+    '''
+    '''
+    if type(text) not in [type(''), type(u'')]: return '&mdash;'
+    return convert(text)
+
+
+
+@register.simple_tag
+def odd_even_rotation(count):
+    '''
+    '''
+    try:
+        count = int(count)
+    except:
+        count = 0
+    return u'odd' if (count % 2 == 0) else u'even'
+
+
+
+@register.simple_tag
+def special_number_format(digit):
+    '''
+    '''
+    return float_format(digit)
+
+@register.filter
+def to_true_float(value):
+    return float_format(value)

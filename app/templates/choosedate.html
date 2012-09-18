@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="border:5px solid #666; padding:15px;text-align:center;">
+        <h1>{{ service.title }}</h1>
+        <fieldset>
+            <legend>Время записи</legend>
+            <div class="breadcrumbs">
+                {% if calendar.prev_month_available %}
+                    <a href="/choosedate/{{ company.id }}/{{ service.id }}/?y={{ calendar.prev_year }}&m={{ calendar.prev_month }}">
+                        << предыдущий месяц
+                    </a>
+                {% endif %}
+                <span>{{calendar.month_str}} {{ calendar.year }}</span>
+                {% if calendar.next_month_available %}
+                    <a href="/choosedate/{{ company.id }}/{{ service.id }}/?y={{ calendar.next_year }}&m={{ calendar.next_month }}">
+                        следующий месяц >>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="vis_calendar">
+                {% if vispoints %}
+                    {% for week in calendar.values %}
+                        <div class="week_line" style="margin-bottom:8px;">
+                            {% for day in week %}
+                                {% if day.enabled %}
+                                    <a href="/choosetime/{{ company.id }}/{{ service.id }}/{{ day.date_str }}"  style="text-decoration:none;">
+                                {% endif %}
+                                <div class="button {% if day.data %}{% if day.enabled %}green{% else %}red{% endif %}{% else %}white{% endif %}" style="display:inline-block; width:35px;height:45px;vertical-align: middle;">
+                                    <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                                        {% if not day.day %}
+                                            {{ day|default:" " }}
+                                        {% else %}
+                                            {{ day.day }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if day.enabled %}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    Нет свободных для записи дат
+                {% endif %}
+            </div>
+        </fieldset>
+    </div>
+{% endblock %}
