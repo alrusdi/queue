@@ -235,3 +235,10 @@ body {
 
 .breadcrumbs a {text-decoration:none;}
 .breadcrumbs span {margin:0 10px;}
+
+.error
+{
+    font-size:small;
+    color: #F33;
+    margin-top:0px;
+}

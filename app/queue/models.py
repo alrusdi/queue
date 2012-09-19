@@ -203,7 +203,7 @@ class VisitAttributes(models.Model):
     )
 
     def __unicode__(self):
-        return u'%s %s' % (self.visitor, self.visiting_point)
+        return u'%s %s=%s' % (self.visit_request, self.attr, self.val)
 
     class Meta:
         verbose_name = u'Значение запрашиваемого аттрибута'

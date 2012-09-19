@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
-from django.template import Context, loader
-from queue.models import Company, MenuItem, VisitingPoint, VisitRequest
-from django.shortcuts import redirect
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 import calendar
 import pytils
+import hashlib
+from dateutil.relativedelta import relativedelta
+
+from django.http import HttpResponse
+from django.template import Context, loader
+from django.shortcuts import redirect
+from django.contrib.auth.models import User
+from django.conf import settings
+
+from models import Company, MenuItem, VisitingPoint, VisitRequest, Visitor, VisitAttributes
 
 def index(request):
     return redirect('/company/')
@@ -61,6 +66,7 @@ def choosedate(request, company_id, service_id):
                                 visiting_point__date_from__gte=date_from
                                 ).values('visiting_point__pk'))
     locked = [i['visiting_point__pk'] for i in locked]
+
     at = list(VisitingPoint.objects.filter(service=service, date_from__gte=date_from).exclude(pk__in=locked))
 
     vispoints = {}
@@ -75,9 +81,12 @@ def choosedate(request, company_id, service_id):
                                     visiting_point__date_to__lte=date_to,
                                     ).values('visiting_point__pk'))
         locked = [i['visiting_point__pk'] for i in locked]
+        print locked, date_from, date_to
         raw_vispoints = list(VisitingPoint.objects.filter(service=service, date_from__gte=date_from, date_to__lte=date_to))
         for vp in raw_vispoints:
-            vispoints[vp.date_from.strftime('%Y-%m-%d')] = vp
+            key = vp.date_from.strftime('%Y-%m-%d')
+            vispoints[key] = vispoints.get(key, [])
+            vispoints[key].append(vp.pk)
         cal = {
             'year': int(date_from.strftime('%Y')),
             'month': int(date_from.strftime('%m')),
@@ -96,10 +105,10 @@ def choosedate(request, company_id, service_id):
                 key = '%s-%.2d-%.2d' %(cal['year'],cal['month'],int(d))
                 if key not in vispoints.keys():
                     continue
-                vp = vispoints[key]
+                vp_ids = set(vispoints[key])
                 vals[k1][k2] = {
-                    'enabled':not(vp.id in locked),
-                    'data':vp,
+                    'enabled':bool(vp_ids - set(locked)),
+                    'working':vp_ids,
                     'day':d,
                     'date_str': key
                     }
@@ -163,17 +172,71 @@ def choosetime(request, company_id, service_id, day):
     return HttpResponse(t.render(c))
 
 def apply(request, vis_point):
-    t = loader.get_template('apply.html')
+    t = False
     vp = VisitingPoint.objects.get(pk=vis_point)
+    if len(vp.visitrequest_set.all()):
+        t = loader.get_template('locked.html')
+    service = vp.service
+    params = list(service.menuitemattribute_set.all())
+    company = service.company
     post = {}
+    errors = {}
+    keys = ['last_name', 'first_name', 'phone']
+    keys.extend([i.field_name for i in params])
+    vr = False
+    pwd = False
+    user = False
     if request.method == 'POST':
         post = request.POST
-        print post
+        error_happend = False
+        for key in keys:
+            if not post.get(key):
+                error_happend = True
+                errors[key] = u'Поле обязательно для заполнения'
+        if not error_happend:
+            user, pwd = get_user_and_password(post)
+            if user:
+                vr = create_visit_request(user, vp, company, post)
+                t = loader.get_template('success.html')
+            else:
+                errors['password'] = u'Введен неправильный пароль'
+
+    t = t or loader.get_template('apply.html')
+
     c = Context({
-        'company': vp.service.company,
-        'service': vp.service,
-        'params': vp.service.menuitemattribute_set.all(),
+        'company': company,
+        'service': service,
+        'params': params,
         'vispoint': vp,
-        'post': post
+        'post': post,
+        'errors':errors,
+        'visit_request': vr,
+        'password': pwd
     })
     return HttpResponse(t.render(c))
+
+def create_visit_request(user, visiting_point, company, data):
+    visitor = Visitor(user=user, phone=data['phone'])
+    visitor.save()
+    vr = VisitRequest(company=company, visitor=visitor, visiting_point=visiting_point)
+    vr.save()
+    for k,v in data.items():
+        if k[0:3]=='sf_':
+            va = VisitAttributes(visit_request=vr, attr_id = int(k[3:]), val=v)
+            va.save()
+    return vr
+
+def get_user_and_password(data):
+    uname = pytils.translit.slugify(data['last_name']+data['first_name'][0:1])
+    pwd = False
+    try:
+        user = User.objects.get(username=uname)
+        if not data['password'] or not user.check_password(data['password']):
+            return False, pwd
+    except User.DoesNotExist:
+        pwd = data['password'] or hashlib.md5(uname+settings.SECRET_KEY).hexdigest()[0:8]
+        user = User.objects.create_user(uname, uname+'@ocheredi-net.com', pwd)
+        user.first_name = data['first_name']
+        user.last_name = data['last_name']
+        user.save()
+    return user, pwd

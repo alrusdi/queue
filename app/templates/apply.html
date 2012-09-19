@@ -7,9 +7,40 @@
         {% csrf_token %}
         <fieldset>
             <legend>Основные данные</legend>
-            <div style="width:200px; float:left;">Фамилия:</div> <input type="text" name="last_name" value="{{ post.last_name }}" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
-            <div style="width:200px; float:left;">Имя:</div> <input name="first_name" value="{{ post.first_name }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
-            <div style="width:200px; float:left;">Телефон для связи:</div> <input name="phone" value="{{ post.phone }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" /><br />
+            <div style="width:200px; float:left;">Фамилия:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input type="text" name="last_name" value="{{ post.last_name }}" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                {% if errors.last_name %}
+                <p class="error">{{ errors.last_name }}</p>
+                {% endif %}
+            </div>
+            <br clear="all" />
+            <div style="width:200px; float:left;">Имя:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input name="first_name" value="{{ post.first_name }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                {% if errors.first_name %}
+                    <span class="error">{{ errors.first_name }}</span>
+                {% endif %}
+            </div>
+            <br clear="all" />
+            <div style="width:200px; float:left;">Телефон для связи:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input name="phone" value="{{ post.phone }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                {% if errors.phone %}
+                    <span class="error">{{ errors.phone }}</span>
+                {% endif %}
+            </div>
+            <br clear="all" />
+            <div style="width:200px; float:left;">Пароль:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input name="password" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                <p style="font-size:xx-small; color:#777;">
+                    если у вас нет пароля в систему оставьте поле пустым
+                </p>
+                {% if errors.password %}
+                    <span class="error">{{ errors.password }}</span>
+                {% endif %}
+            </div>
         </fieldset>
         {% if params %}
         <fieldset>
@@ -22,6 +53,9 @@
                     <p style="font-size:xx-small; color:#777;">
                         {{ param.field_description }}
                     </p>
+                    {% if errors|dictval:param.field_name %}
+                        <span class="error">{{ errors|dictval:param.field_name }}</span>
+                    {% endif %}
                 </div>
                 <br clear="all" />
             {% endfor %}
