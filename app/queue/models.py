@@ -111,7 +111,7 @@ class MenuItemAttribute(models.Model):
 
 
 class Operator(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User,
         verbose_name=u'Аккаунт',
     )
@@ -127,7 +127,7 @@ class Operator(models.Model):
         verbose_name_plural = u'Операторы'
 
 class Visitor(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User,
         verbose_name=u'Аккаунт',
     )

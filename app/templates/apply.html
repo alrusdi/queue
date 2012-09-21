@@ -30,6 +30,7 @@
                     <span class="error">{{ errors.phone }}</span>
                 {% endif %}
             </div>
+            {% if not current_user.is_authenticated %}
             <br clear="all" />
             <div style="width:200px; float:left;">Пароль:</div>
             <div style="float:right;width:75%;text-align:left;">
@@ -41,6 +42,7 @@
                     <span class="error">{{ errors.password }}</span>
                 {% endif %}
             </div>
+            {% endif %}
         </fieldset>
         {% if params %}
         <fieldset>

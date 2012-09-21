@@ -242,3 +242,8 @@ body {
     color: #F33;
     margin-top:0px;
 }
+
+.login_block a
+{
+    text-decoration:none;
+}

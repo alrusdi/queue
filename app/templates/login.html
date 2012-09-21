@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="login_block" style="border:5px solid #666; padding:15px;text-align:center;">
+
+        {% if current_user.is_authenticated %}
+        <h1>Вы уже авторизованы</h1>
+        <a href="/">
+        <div class="button green" onclick="$('#auth_form').submit()" style="display:inline-block; width:165px;height:45px;vertical-align: middle;">
+            <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                На главную
+            </div>
+        </div>
+        </a>
+        <a href="/logout/">
+        <div class="button red" onclick="$('#auth_form').submit()" style="display:inline-block; width:165px;height:45px;vertical-align: middle;">
+            <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                Выход
+            </div>
+        </div>
+        </a>
+        {% else %}
+        <h1>Авторизация</h1>
+        <fieldset>
+            <legend>Логин и пароль</legend>
+            {% if error %}
+                <span class="error">{{ error }}</span>
+            {% endif %}
+            <form id="auth_form" method="post">
+            <div style="width:200px; float:left;">Логин:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input name="username" value="{{ post.username }}" type="text" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+            </div>
+            <br clear="all" />
+            <div style="width:200px; float:left;">Пароль:</div>
+            <div style="float:right;width:75%;text-align:left;">
+                <input name="password" type="password" style="width:60%;height:40px;font-size:19pt;font-weight:bold;" class="ui-keyboard-input ui-widget-content ui-corner-all" />
+                <input type="submit" style="display:none" value="Отправить">
+            </div>
+            </form>
+        </fieldset>
+        <div class="button green" onclick="$('#auth_form').submit()" style="display:inline-block; width:135px;height:45px;vertical-align: middle;">
+            <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                Отправить
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

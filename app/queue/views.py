@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import calendar
+from mercurial.dispatch import request
 import pytils
 import hashlib
 from dateutil.relativedelta import relativedelta
@@ -10,6 +11,8 @@ from django.template import Context, loader
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.contrib import auth
+
 
 from models import Company, MenuItem, VisitingPoint, VisitRequest, Visitor, VisitAttributes
 
@@ -30,7 +33,8 @@ def companies(request, company_id = False):
         return redirect('/services/'+company_id)
     c = Context({
                 'company':current_company,
-                'page':'company'
+                'page':'company',
+                'current_user': request.user
                 })
     return HttpResponse(t.render(c))
 
@@ -48,7 +52,8 @@ def services(request, company_id, service_id=False):
     c = Context({
                 'company': current_company,
                 'services': list(services),
-                'page':'service'
+                'page':'service',
+                'current_user': request.user
                 })
     return HttpResponse(t.render(c))
 
@@ -138,7 +143,8 @@ def choosedate(request, company_id, service_id):
                 'vispoints': vispoints,
                 'locked_vispoints': locked,
                 'calendar': cal,
-                'page': 'apply'
+                'page': 'apply',
+                'current_user': request.user
                 })
     return HttpResponse(t.render(c))
 
@@ -167,7 +173,8 @@ def choosetime(request, company_id, service_id, day):
     c = Context({
         'company': company,
         'service': service,
-        'vispoints': vispoints
+        'vispoints': vispoints,
+        'current_user': request.user
     })
     return HttpResponse(t.render(c))
 
@@ -194,7 +201,10 @@ def apply(request, vis_point):
                 error_happend = True
                 errors[key] = u'Поле обязательно для заполнения'
         if not error_happend:
-            user, pwd = get_user_and_password(post)
+            if request.user.is_authenticated():
+                user = request.user
+            else:
+                user, pwd = get_user_and_password(post)
             if user:
                 vr = create_visit_request(user, vp, company, post)
                 t = loader.get_template('success.html')
@@ -211,13 +221,17 @@ def apply(request, vis_point):
         'post': post,
         'errors':errors,
         'visit_request': vr,
-        'password': pwd
+        'password': pwd,
+        'current_user': request.user
     })
     return HttpResponse(t.render(c))
 
 def create_visit_request(user, visiting_point, company, data):
-    visitor = Visitor(user=user, phone=data['phone'])
-    visitor.save()
+    try:
+        visitor = user.visitor
+    except User.DoesNotExist:
+        visitor = Visitor(user=user, phone=data['phone'])
+        visitor.save()
     vr = VisitRequest(company=company, visitor=visitor, visiting_point=visiting_point)
     vr.save()
     for k,v in data.items():
@@ -240,3 +254,53 @@ def get_user_and_password(data):
         user.last_name = data['last_name']
         user.save()
     return user, pwd
+
+def login(request):
+    t = loader.get_template('login.html')
+    error = False
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth.login(request, user)
+                if user.is_admin:
+                    return redirect('/admin/')
+                try:
+                    op = user.operator
+                    return redirect('/operator/')
+                except User.DoesNotExist:
+                    pass
+                return redirect('/company/')
+            else:
+                error = u'Ваш аккаунт заблокирован'
+        else:
+            error = u'Введен неправильный логин или пароль'
+    c = Context({
+        'error':error,
+        'current_user': request.user
+    })
+    return HttpResponse(t.render(c))
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/login/')
+
+def operator(request):
+    t = loader.get_template('operator/index.html')
+    try:
+        op = request.user.operator
+        date_from = datetime().replace(hour=0, minute=0, second=0)
+        date_to = datetime().replace(hour=23, minute=59, second=59)
+        vps = op.visitingpoint_set.filter(date_from__gte=date_from, date_to__lte=date_to).values('pk')
+        vp_ids = [i['pk'] for i in vps]
+
+        visit_requests = VisitRequest.objects.filter(visiting_point__id__in = vp_ids)
+    except User.DoesNotExist:
+        return redirect('/login/')
+    c = Context({
+        'current_user': request.user,
+        'visit_requests':visit_requests,
+    })
+    return HttpResponse(t.render(c))
