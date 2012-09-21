@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="border:5px solid #666; padding:15px;text-align:center;">
+<div class="choosetime_block content">
 {% for vp in vispoints %}
     {% if vp.enabled %}
         <a href="/apply/{{ vp.data.pk }}" style="text-decoration:none;">

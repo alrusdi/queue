@@ -267,10 +267,10 @@ def login(request):
                 try:
                     op = user.operator
                     return redirect('/operator/')
-                except User.DoesNotExist:
+                except:
                     pass
-                #if user.is_admin:
-                #    return redirect('/admin/')
+                if user.is_superuser:
+                    return redirect('/admin/')
                 return redirect('/company/')
             else:
                 error = u'Ваш аккаунт заблокирован'

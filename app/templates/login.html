@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="login_block" style="border:5px solid #666; padding:15px;text-align:center;">
-
+    <div class="login_block content">
         {% if current_user.is_authenticated %}
         <h1>Вы уже авторизованы</h1>
         <a href="/">
