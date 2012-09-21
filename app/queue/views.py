@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import calendar
-from mercurial.dispatch import request
 import pytils
 import hashlib
 from dateutil.relativedelta import relativedelta
