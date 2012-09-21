@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="operator-index_block content">
+        <h1>Информация о записи на прием №{{ visit_request.pk }}</h1>
+
+        <div class="request_view">
+            <fieldset>
+                <legend>Основное</legend>
+                <div class="field_left">Заявитель</div>
+                <div class="field_right">
+                    {{ visit_request.visitor.user.last_name }} {{ visit_request.visitor.user.first_name }}
+                </div>
+                <br clear="all" />
+
+                <div class="field_left">Телефон</div>
+                <div class="field_right">
+                    {{ visit_request.visitor.phone }}
+                </div>
+                <br clear="all" />
+            </fieldset>
+            <fieldset>
+                <legend>Дополнительно</legend>
+                {%  for va in visit_request.visitattributes_set.all %}
+                <div class="field_left">{{ va.attr.field_title }}</div>
+                <div class="field_right">{{ va.val }}</div>
+                <br clear="all" />
+                {% endfor %}
+            </fieldset>
+        </div>
+
+        <a href="/operator/">
+            <div class="button blue exit_btn" style="width:230px;">
+                <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                    Список записей
+                </div>
+            </div>
+        </a>
+        <a href="/">
+            <div class="button green exit_btn">
+                <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
+                    Выход
+                </div>
+            </div>
+        </a>
+    </div>
+{% endblock %}

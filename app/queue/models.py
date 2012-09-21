@@ -137,7 +137,7 @@ class Visitor(models.Model):
     )
 
     def __unicode__(self):
-        return u'%s %s' % (self.user.username, self.phone)
+        return u'%s %s (%s)' % (self.user.last_name,self.user.first_name, self.phone)
 
     class Meta:
         verbose_name = u'Посетитель'
@@ -168,6 +168,13 @@ class VisitingPoint(models.Model):
         verbose_name = u'График работы'
         verbose_name_plural = u'Графики работы'
 
+VISIT_REQUEST_STATUSES = (
+    ('pending', u'Ожидает приема'),
+    ('canceled', u'Отменена'),
+    ('serving', u'Обслуживается'),
+    ('served', u'Обслужена'),
+)
+
 class VisitRequest(models.Model):
     company = models.ForeignKey(
         Company,
@@ -181,13 +188,18 @@ class VisitRequest(models.Model):
         VisitingPoint,
         verbose_name = u'Дата/Время'
     )
+    status = models.CharField(
+        max_length = 100,
+        choices = VISIT_REQUEST_STATUSES,
+        default = 'pending'
+    )
 
     def __unicode__(self):
         return u'%s %s' % (self.visitor, self.visiting_point)
 
     class Meta:
-        verbose_name = u'Посещение'
-        verbose_name_plural = u'Посещения'
+        verbose_name = u'Запись на прием'
+        verbose_name_plural = u'Записи на прием'
 
 class VisitAttributes(models.Model):
     visit_request = models.ForeignKey(

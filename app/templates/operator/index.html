@@ -2,8 +2,42 @@
 {% block content %}
     <div class="operator-index_block content">
         <h1>Записи на сегодняшний день</h1>
+        {% if visit_requests %}
+        <div class="visit_requests_list">
+            <table class="datatable">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Посетитель</th>
+                <th>Время</th>
+                <th>Статус</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for vr in visit_requests %}
+                <tr>
+                    <td>{{ vr.pk }}</td>
+                    <td><a href="/operator/view_request/{{ vr.pk }}">{{ vr.visitor }}</a></td>
+                    <td>{{ vr.visiting_point.date_from|date:'H:m' }} - {{ vr.visiting_point.date_to|date:'H:m' }}</td>
+                    <td>{{ vr.get_status_display }}</td>
+                    <td>
+                        <a href="/operator/set_request_status/{{ vr.pk }}/canceled/">Отменить</a><br>
+                        <a href="/operator/set_request_status/{{ vr.pk }}/serving/">Пригласить</a><br>
+                        <a href="/operator/set_request_status/{{ vr.pk }}/served/">Завершить прием</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="error">
+            Записей на сегодня не обнаружено
+        </p>
+        {% endif %}
         <a href="/">
-            <div class="button green" style="display:inline-block; width:135px;height:45px;vertical-align: middle;">
+            <div class="button green exit_btn">
                 <div style="vertical-align: middle;text-align:center;font-size:30px;margin-top:15px;">
                     Выход
                 </div>

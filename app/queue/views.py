@@ -286,6 +286,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/login/')
 
+
 def operator(request):
     t = loader.get_template('operator/index.html')
     try:
@@ -302,4 +303,47 @@ def operator(request):
         'current_user': request.user,
         'visit_requests':visit_requests,
     })
+    return HttpResponse(t.render(c))
+
+def operator_set_request_status(request, request_id, status):
+    try:
+        op = request.user.operator
+    except User.DoesNotExist:
+        return redirect('/login/1')
+
+    try:
+        vr = VisitRequest.objects.get(pk=request_id)
+    except VisitRequest.DoesNotExist:
+        return redirect('/login/2')
+
+    if not vr.visiting_point.operator_id == op.id:
+        return redirect('/login/3')
+
+    try:
+        vr.status = status
+        vr.save()
+    except:
+        return redirect('/login/4')
+
+    return redirect('/operator/')
+
+def operator_view_request(request, request_id):
+    try:
+        op = request.user.operator
+    except User.DoesNotExist:
+        return redirect('/login/1')
+
+    try:
+        vr = VisitRequest.objects.get(pk=request_id)
+    except VisitRequest.DoesNotExist:
+        return redirect('/login/2')
+
+    if not vr.visiting_point.operator_id == op.id:
+        return redirect('/login/3')
+
+    t = loader.get_template('operator/view_request.html')
+    c = Context({
+        'current_user': request.user,
+        'visit_request':vr,
+        })
     return HttpResponse(t.render(c))

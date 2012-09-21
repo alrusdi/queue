@@ -354,7 +354,70 @@ body {
     text-align:center;
 }
 
-.login_block a
+.content a
 {
     text-decoration:none;
+}
+
+fieldset
+{
+    padding-bottom:10px;
+    margin-bottom:15px;
+}
+
+/* DATA TABLES */
+
+table.datatable {
+    border: 1px solid #888;
+    width:100%;
+}
+
+table.datatable th {
+    background: #CCC;
+    border: 1px solid #ddd;
+    padding:5px;
+    white-space:nowrap;
+}
+
+table.datatable td {
+    background: #EEE;
+    border: 1px solid #ddd;
+    padding:5px;
+    font-size:small;
+}
+
+/* END DATA TABLES */
+
+.exit_btn
+{
+    margin-top:15px;
+    width:135px;
+    height:45px;
+    vertical-align: middle;
+}
+
+.field_left
+{
+    width:200px;
+    float:left;
+    text-align:left;
+}
+
+.field_right
+{
+    float:right;
+    width:70%;
+    text-align:left;
+}
+
+.request_view
+{
+    margin-top:20px;
+    margin-bottom:25px;
+    padding-left:50px;
+}
+
+.request_view fieldset
+{
+    padding-left: 25px;
 }

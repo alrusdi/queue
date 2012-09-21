@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     (r'^login/$', 'queue.views.login'),
     (r'^logout/$', 'queue.views.logout'),
     (r'^operator/$', 'queue.views.operator'),
+    (r'^operator/set_request_status/(?P<request_id>[0-9]+)/(?P<status>[a-z]+).*$', 'queue.views.operator_set_request_status'),
+    (r'^operator/view_request/(?P<request_id>[0-9]+).*$', 'queue.views.operator_view_request' ),
     (r'^admin/', include(admin.site.urls)),
 )
 
