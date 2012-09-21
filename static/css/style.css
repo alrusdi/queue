@@ -1,5 +1,43 @@
+@font-face {
+    font-family: 'fontello';
+    src: url('../fonts/fontello.eot');
+    src: url('../fonts/fontello.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fontello.woff') format('woff'),
+    url('../fonts/fontello.ttf') format('truetype'),
+    url('../fonts/fontello.svg#fontello') format('svg');
+    font-weight: normal; font-style: normal;
+}
+
+[class*="icon-"] {
+    font-family: 'fontello';
+    font-style: normal;
+    font-size: 1.2em;
+    speak: none;
+}
+
+.icon-home:after { content: "\2302"; }
+.icon-cog:after { content: "\2699"; }
+.icon-cw:after { content: "\27f3"; }
+.icon-location:after { content: "\e724"; }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color: #444;
+    font-size: 100%;
+    background: #f7f7f7 url(../i/bg.png) repeat center top;
+}
+
 body {
-    background-image:url(../i/stripe.png)
+    font-family: Cambria, Georgia, "Times New Roman", Times, serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size:18px;
+    font-size:1.125rem;
+    line-height: 1.5;
 }
 
 .base {
@@ -7,6 +45,69 @@ body {
     width: 900px;
     margin: 30px auto;
     color: #999;
+}
+
+.nav {
+    list-style: none;
+    text-align: center;
+}
+
+.nav li {
+    position: relative;
+    display: inline-block;
+    margin-right: -4px; /* See: http://css-tricks.com/fighting-the-space-between-inline-block-elements/ */
+}
+
+.nav li:before {
+    content: "";
+    display: block;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    z-index: -1;
+}
+
+.nav a {
+    display: block;
+    background-color: #f7f7f7;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#e7e7e7));
+    background-image: -webkit-linear-gradient(top, #f7f7f7, #e7e7e7);
+    background-image: -moz-linear-gradient(top, #f7f7f7, #e7e7e7);
+    background-image: -ms-linear-gradient(top, #f7f7f7, #e7e7e7);
+    background-image: -o-linear-gradient(top, #f7f7f7, #e7e7e7);
+    color: #a7a7a7;
+    margin: 36px;
+    width: 54px;
+    height: 54px;
+    position: relative;
+    text-align: center;
+    line-height: 54px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+}
+
+.nav a:before {
+    content: "";
+    display: block;
+    background: #fff;
+    border-top: 2px solid #ddd;
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    bottom: -18px;
+    right: -18px;
+    z-index: -1;
+    border-radius: 50%;
+    box-shadow: inset 0px 8px 48px #ddd;
+}
+
+.nav a:hover {
+    text-decoration: none;
+    color: #555;
+    background: #f5f5f5;
 }
 
 /* button

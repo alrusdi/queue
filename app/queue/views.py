@@ -265,13 +265,13 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth.login(request, user)
-                if user.is_admin:
-                    return redirect('/admin/')
                 try:
                     op = user.operator
                     return redirect('/operator/')
                 except User.DoesNotExist:
                     pass
+                #if user.is_admin:
+                #    return redirect('/admin/')
                 return redirect('/company/')
             else:
                 error = u'Ваш аккаунт заблокирован'
@@ -291,8 +291,8 @@ def operator(request):
     t = loader.get_template('operator/index.html')
     try:
         op = request.user.operator
-        date_from = datetime().replace(hour=0, minute=0, second=0)
-        date_to = datetime().replace(hour=23, minute=59, second=59)
+        date_from = datetime.now().replace(hour=0, minute=0, second=0)
+        date_to = datetime.now().replace(hour=23, minute=59, second=59)
         vps = op.visitingpoint_set.filter(date_from__gte=date_from, date_to__lte=date_to).values('pk')
         vp_ids = [i['pk'] for i in vps]
 

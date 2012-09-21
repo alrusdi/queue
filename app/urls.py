@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^apply/(?P<vis_point>[0-9]+).*$', 'queue.views.apply'),
     (r'^login/$', 'queue.views.login'),
     (r'^logout/$', 'queue.views.logout'),
+    (r'^operator/$', 'queue.views.operator'),
     (r'^admin/', include(admin.site.urls)),
 )
 
